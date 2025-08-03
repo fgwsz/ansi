@@ -90,7 +90,6 @@ OStream_& operator<<(OStream_& os,StyleText const& style_text){
     return os
         <<'3'<<static_cast<unsigned char>(style_text.fg_)<<';'
         <<'4'<<static_cast<unsigned char>(style_text.bg_)<<'m'
-        <<style_text.text_
-        <<"\033[0m";
+        <<style_text.text_<<"\033[0m";
 }
 }//namespace ansi
