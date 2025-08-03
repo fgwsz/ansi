@@ -1,4 +1,5 @@
 #pragma once
+#include<cstdio>//std::snprintf
 #include<utility>//std::forward
 #include<string>//std::string
 #include<set>//std::set
@@ -54,7 +55,7 @@ StyleText& StyleText::format(std::string const& format,Args_&&...args){
     std::size_t len=snprintf(nullptr,0,format.c_str(),std::forward<Args_>(args)...);//预计算长度
     std::string s;
     s.resize(len);//正确设置长度为有效内容长度（不含终止符）
-    snprintf(&(s[0]),len+1,format.c_str(),std::forward<Args_>(args)...);
+    std::snprintf(&(s[0]),len+1,format.c_str(),std::forward<Args_>(args)...);
     this->text_=s;
     return *this;
 }
