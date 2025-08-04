@@ -4,6 +4,7 @@
 #include<string>//std::string
 #include<set>//std::set
 #include<initializer_list>//std::initializer_list
+#include<format>//std::format_string std::format
 namespace ansi{
 enum class Color:unsigned char{
     Black   ='0',
@@ -25,6 +26,8 @@ enum class Style:unsigned char{
 class StyleText{
 public:
     StyleText(std::string const& text={});
+    template<typename...Args_>requires requires{sizeof...(Args_)>1;}
+    StyleText(std::format_string<Args_...> const& fmt,Args_&&...args);
     StyleText& text(std::string const& text);
     template<typename...Args_>
     StyleText& format(std::string const& format,Args_&&...args);
@@ -46,19 +49,13 @@ StyleText::StyleText(std::string const& text)
     ,fg_(ansi::Color::Default)
     ,bg_(ansi::Color::Default)
 {}
-StyleText& StyleText::text(std::string const& text){
-    this->text_=text;
-    return *this;
-}
-template<typename...Args_>
-StyleText& StyleText::format(std::string const& format,Args_&&...args){
-    std::size_t len=snprintf(nullptr,0,format.c_str(),std::forward<Args_>(args)...);//预计算长度
-    std::string s;
-    s.resize(len);//正确设置长度为有效内容长度（不含终止符）
-    std::snprintf(&(s[0]),len+1,format.c_str(),std::forward<Args_>(args)...);
-    this->text_=s;
-    return *this;
-}
+template<typename...Args_>requires requires{sizeof...(Args_)>1;}
+StyleText::StyleText(std::format_string<Args_...> const& fmt,Args_&&...args)
+    :text_(std::format(fmt,std::forward<Args_>(args)...))
+    ,styles_({})
+    ,fg_(ansi::Color::Default)
+    ,bg_(ansi::Color::Default)
+{}
 StyleText& StyleText::style(ansi::Style s){
     this->styles_.insert(s);
     return *this;

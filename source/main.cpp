@@ -2,8 +2,7 @@
 #include"ansi.hpp"
 int main(int argc,char* argv[]){
     std::cout<<
-        ansi::StyleText()
-        .format("%s\n","Hello world!")
+        ansi::StyleText("{}\n","Hello world!")
         .style(ansi::Style::StrikeThrough)
     ;
     std::cout<<
@@ -26,8 +25,7 @@ int main(int argc,char* argv[]){
         .bg(ansi::Color::Green)
     ;
     std::cout<<
-        ansi::StyleText()
-        .text("Hello world!\n")
+        ansi::StyleText("Hello world!\n")
         .style(ansi::Style::Italic)
         .style(ansi::Style::Bold)
         .style(ansi::Style::UnderLine)
