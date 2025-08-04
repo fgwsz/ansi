@@ -26,7 +26,7 @@ enum class Style:unsigned char{
 class StyleText{
 public:
     StyleText(std::string const& text={});
-    template<typename...Args_>requires requires{sizeof...(Args_)>1;}
+    template<typename...Args_>requires requires{sizeof...(Args_)>0;}
     StyleText(std::format_string<Args_...> const& fmt,Args_&&...args);
     StyleText& text(std::string const& text);
     template<typename...Args_>
@@ -49,7 +49,7 @@ StyleText::StyleText(std::string const& text)
     ,fg_(ansi::Color::Default)
     ,bg_(ansi::Color::Default)
 {}
-template<typename...Args_>requires requires{sizeof...(Args_)>1;}
+template<typename...Args_>requires requires{sizeof...(Args_)>0;}
 StyleText::StyleText(std::format_string<Args_...> const& fmt,Args_&&...args)
     :text_(std::format(fmt,std::forward<Args_>(args)...))
     ,styles_({})
