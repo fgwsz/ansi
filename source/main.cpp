@@ -65,10 +65,18 @@ int main(int argc,char* argv[]){
     auto tile=ansi::StyleText("01");
     tile.set_color(ansi::Color::Yellow,ansi::Color::Blue);
     ansi::TileMap tile_map(10,10,tile);
-    tile_map.at(4,4)
-        .set_text("赢")
-        .set_style(ansi::Style::Bold)
-        .set_color(ansi::Color::Black,ansi::Color::White);
+    tile_map.set_tile(4,4,
+            ansi::StyleText()
+            .set_text("赢")
+            .set_style(ansi::Style::Bold)
+            .set_color(ansi::Color::Black,ansi::Color::White)
+    )
+    .set_tile(0,0,
+            ansi::StyleText()
+            .set_text("赢麻了")
+            .set_style(ansi::Style::Bold)
+            .set_color(ansi::Color::Black,ansi::Color::Red)
+    );
     std::cout<<tile_map.ansi_string();
     return 0;
 }
