@@ -32,5 +32,17 @@ int main(int argc,char* argv[]){
         .fg(ansi::Color::Blue)
         .bg(ansi::Color::Yellow)
     ;
+    std::cout
+        <<ansi::StyleText("  ").bg(ansi::Color::Black  )
+        <<ansi::StyleText("  ").bg(ansi::Color::Red    )
+        <<ansi::StyleText("  ").bg(ansi::Color::Green  )
+        <<ansi::StyleText("  ").bg(ansi::Color::Yellow )
+        <<ansi::StyleText("  ").bg(ansi::Color::Blue   )
+        <<ansi::StyleText("  ").bg(ansi::Color::Magenta)
+        <<ansi::StyleText("  ").bg(ansi::Color::Cyan   )
+        <<ansi::StyleText("  ").bg(ansi::Color::White  )
+        <<ansi::StyleText("  ").bg(ansi::Color::Default)
+        <<ansi::StyleText("\n")
+    ;
     return 0;
 }
