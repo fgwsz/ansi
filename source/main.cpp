@@ -44,5 +44,17 @@ int main(int argc,char* argv[]){
         <<ansi::StyleText("  ").bg(ansi::Color::Default)
         <<ansi::StyleText("\n")
     ;
+    std::cout
+        <<ansi::StyleText("赢").bg(ansi::Color::Black  )
+        <<ansi::StyleText("赢").bg(ansi::Color::Red    )
+        <<ansi::StyleText("赢").bg(ansi::Color::Green  )
+        <<ansi::StyleText("赢").bg(ansi::Color::Yellow )
+        <<ansi::StyleText("赢").bg(ansi::Color::Blue   )
+        <<ansi::StyleText("赢").bg(ansi::Color::Magenta)
+        <<ansi::StyleText("赢").bg(ansi::Color::Cyan   )
+        <<ansi::StyleText("赢").bg(ansi::Color::White  )
+        <<ansi::StyleText("赢").bg(ansi::Color::Default)
+        <<ansi::StyleText("\n")
+    ;
     return 0;
 }
