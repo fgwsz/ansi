@@ -1,6 +1,8 @@
 #include<iostream>
+
 #include"ansi.hpp"
-#include"ansi_tilemap.hpp"
+#include"game.h"
+
 int main(int argc,char* argv[]){
     std::cout<<
         ansi::StyleText("{}\n","Hello world!")
@@ -78,5 +80,5 @@ int main(int argc,char* argv[]){
             .set_color(ansi::Color::Black,ansi::Color::Red)
     );
     std::cout<<tile_map.ansi_string();
-    return 0;
+    return game::exec();
 }
